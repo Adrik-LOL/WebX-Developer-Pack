@@ -1,0 +1,10 @@
+{
+    "name": "idex",
+    "main": "index.html",
+    "window": {
+      "width": 1000,
+      "height": 800,
+      "toolbar": true
+    }
+}
+  
