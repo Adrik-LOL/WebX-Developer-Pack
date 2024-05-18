@@ -1,0 +1,77 @@
+{
+  "name": "idex",
+  "displayName": "IdeX",
+  "description": "A simple VSCode Extension to code in HTML, CSS and LUA for the WebX Environment",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.89.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:html",
+    "onLanguage:css",
+    "onLanguage:lua"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "html",
+        "extensions": [".html"],
+        "aliases": ["HTML"]
+      },
+      {
+        "id": "css",
+        "extensions": [".css"],
+        "aliases": ["CSS"]
+      },
+      {
+        "id": "lua",
+        "extensions": [".lua"],
+        "aliases": ["Lua"]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "html",
+        "scopeName": "text.html.basic",
+        "path": "./syntaxes/html.tmLanguage.json"
+      },
+      {
+        "language": "css",
+        "scopeName": "source.css",
+        "path": "./syntaxes/css.tmLanguage.json"
+      },
+      {
+        "language": "lua",
+        "scopeName": "source.lua",
+        "path": "./syntaxes/lua.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "idex.helloWorld",
+        "title": "Hello World"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test",
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.89.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.3.9"
+  }
+}
