@@ -7,16 +7,20 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+    <header class="header">
         <h1>IdeX</h1>
         <p>Welcome to IdeX! Let's start!</p>
     </header>
-    <div class="content">
-        <h2>Recent Projects</h2>
-        <ul id="recent-projects">
-            <!-- List of recent projects will be dynamically populated here -->
-        </ul>
-        <button id="create-project-btn" onclick="handleCreateProjectClick()">Create New Project</button>
+    <div class="container">
+        <div class="content">
+            <h2>Recent Projects</h2>
+            <ul id="recent-projects">
+                <!-- List of recent projects will be dynamically populated here -->
+            </ul>
+        </div>
+        <div class="buttons">
+            <button id="create-project-btn" class="button" onclick="handleCreateProjectClick()">Create New Project</button>
+        </div>
     </div>
 
     <script src="scripts.js"></script>

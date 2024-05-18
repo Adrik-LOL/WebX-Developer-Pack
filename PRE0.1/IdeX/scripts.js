@@ -1,8 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-const projectsFolderPath = path.join(__dirname, 'projects');
-const recentProjectsFilePath = path.join(__dirname, 'recentProjects.json');
+// Get the path to the user's data directory (where your NW.js application files are stored)
+const userDataPath = nw.App.dataPath;
+let createProjectBtn;
+
+// Define paths relative to the user's data directory
+const projectsFolderPath = path.join(userDataPath, 'projects');
+const recentProjectsFilePath = path.join(userDataPath, 'recentProjects.json');
 
 // Function to populate recent projects list from JSON file
 function populateRecentProjects() {
@@ -38,6 +43,9 @@ function saveRecentProjects(recentProjects) {
 
 // Function to handle click event on "Create New Project" button
 function handleCreateProjectClick() {
+    // Remove event listener to prevent multiple attachments
+    createProjectBtn.removeEventListener('click', handleCreateProjectClick);
+
     // Replace this with your logic to create a new project
     const projectName = prompt('Enter project name:');
     if (projectName) {
@@ -51,6 +59,9 @@ function handleCreateProjectClick() {
                 saveRecentProjects(recentProjects);
                 alert(`Project "${projectName}" created successfully!`);
                 populateRecentProjects();
+
+                // Re-attach event listener after completing the action
+                createProjectBtn.addEventListener('click', handleCreateProjectClick);
             }
         });
     }
@@ -58,6 +69,12 @@ function handleCreateProjectClick() {
 
 // Populate recent projects on page load
 document.addEventListener('DOMContentLoaded', () => {
+    // Get reference to the "Create New Project" button
+    createProjectBtn = document.getElementById('create-project-btn');
+
+    // Add event listener for "Create New Project" button click
+    createProjectBtn.addEventListener('click', handleCreateProjectClick);
+
     // Create projects folder if it doesn't exist
     fs.mkdir(projectsFolderPath, { recursive: true }, err => {
         if (err) {
@@ -73,8 +90,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         populateRecentProjects();
     });
-
-    // Add event listener for "Create New Project" button click
-    const createProjectBtn = document.getElementById('create-project-btn');
-    createProjectBtn.addEventListener('click', handleCreateProjectClick);
 });
