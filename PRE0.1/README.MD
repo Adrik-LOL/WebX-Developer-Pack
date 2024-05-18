@@ -2,7 +2,7 @@
 
 In the following package there will be present:
 
-+ Napture Search Engine for WebX                             ☑️
++ Napture Search Engine for WebX                               ☑️
 + IdeX for Developing WebX Applications                       ❌
 + BussAPI CLI as an adaptation to buss://register.it         ☑️
 
